@@ -1,64 +1,99 @@
 (function() {
 
-        // Create Datetime objects for each city
-        var crtSydy = new Date(2014, 8, 6, 4, 0, 0);
-        var crtTky = new Date(2014, 8, 6, 3, 0, 0);
-        var crtLndn = new Date(2014, 8, 6, 7, 0, 0);
-        var crtNwyrk = new Date(2014, 8, 6, 2, 0, 0);
+/*========================== NEW YORK CITY TIME ===================================*/
 
+        // Function that holds all the logic for generating and displaying the time
+        var nwyrkTime = function () {
 
-        //  Insert times into the DOM
-        var insrtDom = function() {
+            // instantiate the date object
+            var crtNwyrk = new Date();
 
-            // set Sydney's time into the paragraph tag with it's css id
-            var sydyTime = document.getElementById("sydney-time");
-            sydyTime.innerHTML = crtSydy.getHours() + ":" + crtSydy.getMinutes() + ":" + crtSydy.getSeconds();
+            // set the current hours, minutes, and seconds 
+            var hours = crtNwyrk.getHours();
+            var minutes = crtNwyrk.getMinutes();
+            var seconds = crtNwyrk.getSeconds();
 
-            // set Tokyo's time into the paragraph tag with it's css id
-            var tkyTime = document.getElementById("tokyo-time");
-            tkyTime.innerHTML = crtTky.getHours() + ":" + crtTky.getMinutes() + ":" + crtTky.getSeconds();
+            //  Set the default meridian
+            var meridian = "AM";
 
-            // set London's time into the paragraph tag with it's css id
-            var lndnTime = document.getElementById("london-time");
-            lndnTime.innerHTML = crtLndn.getHours() + ":" + crtLndn.getMinutes() + ":" + crtLndn.getSeconds();
-
-            // set New York City's time into the paragraph tag with it's css id
-            var nwyrkTime = document.getElementById("nyc-time");
-            nwyrkTime.innerHTML = crtNwyrk.getHours() + ":" + crtNwyrk.getMinutes() + ":" + crtNwyrk.getSeconds();
-
-        };
-        insrtDom();
-
-
-        //  Update seconds
-        function updtScnds(sydney) {
-
-            var crntScnds = sydney.getSeconds();
-            var newScnd = sydney.setSeconds(crntScnds + 1);
-            if (newScnd > 59) {
-                var newScnd = 0;
-                document.getElementById("sydney-time").innerHTML = crtSydy.getHours() + ":" + crtSydy.getMinutes() + ":" + newScnd;
-            } else {
-                document.getElementById("sydney-time").innerHTML = crtSydy.getHours() + ":" + crtSydy.getMinutes() + ":" + newScnd;
+             // converting from 24 hour to 12 hour format
+            if (hours > 12) {
+                hours -= 12;
+                meridian = "PM";
+            } else if (hours === 0) {
+                hours = 12;
             }
+
+             // Set the inner value of the paragraph tag with the current time in New York City
+            var nwyrkTime = document.getElementById("nyc-time");
+            nwyrkTime.innerHTML = hours + ":" + minutes + ":" + seconds + " " + meridian;
+
+            // call the bouncer function per 0.5 second
+            window.setTimeout(bouncer, 500);
+        };
+
+
+/*========================= TIME CONVERTER FUNCTION =============================*/
+
+        // Convert New York City time to London, Tokyo, and Sydney time
+        var convertTime = function (){
+
+            // instantiate the nyc date object
+            var nwyrkDate = new Date();
+
+            var lndnHours= nwyrkDate.getHours() + 5;
+            var tkyHours = nwyrkDate.getHours() + 8;
+            var sydnyHours = nwyrkDate.getHours() + 9;
+
+            return {hours: [lndnHours, tkyHours, sydnyHours]};
+        };
+        // Accessing the object: cnvrtdHours.hours[0]
+        var cnvrtdHours= convertTime();
+        
+/*===========================LONDON TIME CLOCK ==================================*/
+
+        var lndnTime = function (cnvHour){
+            var localDate = new Date();
+
+            var lndnHours = localDate.getHours() - cnvHour.hours[0];
+
+
+
+            var lndnMinutes = localDate.getMinutes();
+            var lndnSeconds = localDate.getSeconds();
+
+            //  Set the default meridian
+            var meridian = "AM";
+
+
+            // converting from 24 hour to 12 hour format
+            if (lndnHours > 12) {
+                lndnHours -= 12;
+                meridian = "PM";
+            } else if (lndnHours === 0) {
+                lndnHours = 12;
+            }
+
+            // Set the inner value of the paragraph tag with the current time in London
+            var lndnTime = document.getElementById("london-time");
+            lndnTime.innerHTML = lndnHours + ":" + lndnMinutes + ":" + lndnSeconds + " " + meridian;
+
+            // call the bouncer function per 0.5 second
+            window.setTimeout(bouncer, 500);
         }
 
+/*========================== BOUNCER FUNCTION =======================================*/
+
+         // create bouncer function
+        var bouncer = function () {
+            window.setTimeout(nwyrkTime, 500);
+            window.setTimeout(lndnTime(cnvrtdHours), 500);
+        };
+
+
+/*========================== EXECUTE FUNCTIONS =====================================*/
+
+        nwyrkTime();
+        lndnTime(cnvrtdHours);
         bouncer();
-    }
-    updtScnds(crtSydy);
-
-    // callback for updating time
-    var bouncer = function() {
-        window.setTimeout(updtScnds, 1000);
-    }; bouncer();
-
-
-
-
-    // Update minutes
-
-
-
-
-    // Update hours */
 })();
