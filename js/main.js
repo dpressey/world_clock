@@ -38,6 +38,7 @@
 
 /*========================= TIME CONVERTER FUNCTION =============================*/
 
+/*
         // Convert New York City time to London, Tokyo, and Sydney time
         var convertTime = function (){
 
@@ -54,16 +55,17 @@
         };
         // Accessing the object: cnvrtdHours.hours[0]
         var cnvrtdHours= convertTime();
+*/
         
 /*===========================LONDON TIME CLOCK ==================================*/
         
         // passing in the converted time as an object
-        var lndnTime = function (cnvHour){
+        var lndnTime = function (){
 
             // instantiate the new london dat object
             var lndnDate = new Date();
 
-            // using the object to convert the hours for london
+            // for proper conversion, add five hours to London's time
             var lndnHours = lndnDate.getHours() + 5;
 
             var lndnMinutes = lndnDate.getMinutes();
@@ -92,12 +94,12 @@
 
 /*============================ TOKYO TIME CLOCK ====================================*/
 
-        var tkyTime = function (cnvHour){
+        var tkyTime = function (){
 
             var tkyDate = new Date();
 
             // using the object to convert the hours for tokyo
-            var tkyHours = tkyDate.getHours() - cnvHour.hours[1];
+            var tkyHours = tkyDate.getHours() +13;
 
             var tkyMinutes = tkyDate.getMinutes();
             var tkySeconds = tkyDate.getSeconds();
@@ -141,7 +143,7 @@
 /*========================== EXECUTE FUNCTIONS =====================================*/
 
         nwyrkTime();
-        lndnTime(cnvrtdHours);
-        tkyTime(cnvrtdHours);
+        lndnTime();
+        tkyTime();
         bouncer();
 })();
