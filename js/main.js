@@ -34,28 +34,6 @@
             // call the bouncer function per 0.5 second
             window.setTimeout(bouncer, 500);
         };
-
-
-/*========================= TIME CONVERTER FUNCTION =============================*/
-
-/*
-        // Convert New York City time to London, Tokyo, and Sydney time
-        var convertTime = function (){
-
-            // instantiate the nyc date object
-            var nwyrkDate = new Date();
-
-            // set each city's hour differential based on new york city time
-            var lndnHours= nwyrkDate.getHours() + 5;
-            var tkyHours = nwyrkDate.getHours() + 8;
-            var sydnyHours = nwyrkDate.getHours() + 9;
-
-            // return an object of arrays for each city's current time
-            return {hours: [lndnHours, tkyHours, sydnyHours]};
-        };
-        // Accessing the object: cnvrtdHours.hours[0]
-        var cnvrtdHours= convertTime();
-*/
         
 /*===========================LONDON TIME CLOCK ==================================*/
         
@@ -72,14 +50,14 @@
             var lndnSeconds = lndnDate.getSeconds();
 
             //  Set the default meridian
-            var meridian = "AM";
+            var meridian = "PM";
 
 
             // converting from 24 hour to 12 hour format
             if (lndnHours > 12) {
                 // this will show the time as negative
                 lndnHours -= 12;
-                meridian = "PM";
+                meridian = "AM";
             } else if (lndnHours === 0) {
                 lndnHours = 12;
             }
@@ -98,20 +76,21 @@
 
             var tkyDate = new Date();
 
-            // using the object to convert the hours for tokyo
-            var tkyHours = tkyDate.getHours() +13;
+            // Instead of adding hours to the current 24 hour format, subtract hours from it
+            // to implement the inverse of the current time (new york city)
+            var tkyHours = tkyDate.getHours() - 11;
 
             var tkyMinutes = tkyDate.getMinutes();
             var tkySeconds = tkyDate.getSeconds();
 
             // set the meridian
-            var meridian = "PM";
+            var meridian = "AM";
 
             if (tkyHours > 12){
                 tkyHours -= 12;
 
                 // change meridian
-                meridian = "AM";
+                meridian = "PM";
             } else if (tkyHours === 0){
                 tkyHours = 12;
             }
@@ -129,20 +108,21 @@
 
             var sydnyDate = new Date();
 
-            // using the object to convert the hours for tokyo
-            var sydnyHours = sydnyDate.getHours() +14;
+            // Instead of adding hours to the current 24 hour format, subtract hours
+            // to implement the inverse of the current time (new york city)
+            var sydnyHours = sydnyDate.getHours() - 10;
 
             var sydnyMinutes = sydnyDate.getMinutes();
             var sydnySeconds = sydnyDate.getSeconds();
 
             // set the meridian
-            var meridian = "PM";
+            var meridian = "AM";
 
             if (sydnyHours > 12){
                 sydnyHours -= 12;
 
                 // change meridian
-                meridian = "AM";
+                meridian = "PM";
             } else if (sydnyHours === 0){
                 sydnyHours = 12;
             }
