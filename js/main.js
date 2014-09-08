@@ -124,19 +124,51 @@
             window.setTimeout(bouncer, 500);
         };
 
+/*=============================== SYDNEY TIME CLOCK ==================================*/
+    var sydnyTime = function (){
 
+            var sydnyDate = new Date();
 
+            // using the object to convert the hours for tokyo
+            var sydnyHours = sydnyDate.getHours() +14;
+
+            var sydnyMinutes = sydnyDate.getMinutes();
+            var sydnySeconds = sydnyDate.getSeconds();
+
+            // set the meridian
+            var meridian = "PM";
+
+            if (sydnyHours > 12){
+                sydnyHours -= 12;
+
+                // change meridian
+                meridian = "AM";
+            } else if (sydnyHours === 0){
+                sydnyHours = 12;
+            }
+
+            // set the inner value fo the paragraph tag with the current time in london
+            var sydnyId = document.getElementById("sydney-time");
+            sydnyId.innerHTML = sydnyHours + ":" + sydnyMinutes + ":" + sydnySeconds + " " + meridian;
+
+            // call the bouncer function per 0.5 second
+            window.setTimeout(bouncer, 500);
+        };
 
 /*========================== BOUNCER FUNCTION =======================================*/
 
          // create bouncer function
         var bouncer = function () {
+
             window.setTimeout(nwyrkTime, 500);
-            // Passing in the "converted hours" argument is always necessary 
-            // 500 milliseconds is needed because the callbacks also use 500 milliseconds to make a call to bouncer
-            // And both times total 1000 milliseconds, which is the 1 second delay that is desired.
-            window.setTimeout(lndnTime(cnvrtdHours), 500);
-            window.setTimeout(tkyTime(cnvrtdHours, 500))
+
+            /* Passing in the "converted hours" argument is always necessary 
+             500 milliseconds is needed because the callbacks also use 500 milliseconds to make a call to bouncer
+             And both times total 1000 milliseconds, which is the 1 second delay that is desired. */
+
+            window.setTimeout(lndnTime, 500);
+            window.setTimeout(tkyTime, 500);
+            window.setTimeout(sydnyTime, 500);
         };
 
 
@@ -145,5 +177,6 @@
         nwyrkTime();
         lndnTime();
         tkyTime();
+        sydnyTime();
         bouncer();
 })();
