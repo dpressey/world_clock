@@ -40,27 +40,32 @@
         // passing in the converted time as an object
         var lndnTime = function (){
 
-            // instantiate the new london dat object
+            // instantiate the new london data object
             var lndnDate = new Date();
 
             // for proper conversion, add five hours to London's time
-            var lndnHours = lndnDate.getHours() + 5;
+            var lndnHours = lndnDate.getHours();
+            
+            //  Set the default meridian
+            var meridian = "AM";
+            
+             // converting from 24 hour to 12 hour format
+            if (lndnHours <= 7) {
+            	lndnHours += 5;
+            	meridian = "PM";
+            	
+            } else if(lndnHours >= ){}
+            else if (lndnHours > 12 && lndnHours < 25) {
+                // London is always 5 hours ahead of NYC time, so...
+                // instead of subtracting twelve hours, just subtract seven.
+                lndnHours -= 12;
+                lndnHours += 5;
+                meridian = "AM";
+            }
 
             var lndnMinutes = lndnDate.getMinutes();
             var lndnSeconds = lndnDate.getSeconds();
 
-            //  Set the default meridian
-            var meridian = "PM";
-
-
-            // converting from 24 hour to 12 hour format
-            if (lndnHours > 12) {
-                // this will show the time as negative
-                lndnHours -= 12;
-                meridian = "AM";
-            } else if (lndnHours === 0) {
-                lndnHours = 12;
-            }
 
             // Set the inner value of the paragraph tag with the current time in London
             var lndnId = document.getElementById("london-time");
