@@ -41,7 +41,7 @@
         var lndnTime = function (){
 
             // instantiate the new london data object
-            var lndnDate = new Date();
+            var lndnDate = new Date(2014, 9, 13, 12, 50, 15);
 
             // for proper conversion, add five hours to London's time
             var lndnHours = lndnDate.getHours();
@@ -50,19 +50,12 @@
             var meridian = "AM";
             
              // converting from 24 hour to 12 hour format
-            if (lndnHours <= 7) {
-            	lndnHours += 5;
-            	meridian = "PM";
-            	
-            } else if(lndnHours >= ){}
-            else if (lndnHours > 12 && lndnHours < 25) {
-                // London is always 5 hours ahead of NYC time, so...
-                // instead of subtracting twelve hours, just subtract seven.
-                lndnHours -= 12;
-                lndnHours += 5;
-                meridian = "AM";
+            if (lndnHours === 0) {
+            	lndnHours = 12;
+            } else if (lndnHours > 12) {
+            	lndnHours -= 12;
             }
-
+            
             var lndnMinutes = lndnDate.getMinutes();
             var lndnSeconds = lndnDate.getSeconds();
 
