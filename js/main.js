@@ -40,10 +40,10 @@
         // passing in the converted time as an object
         var lndnTime = function (){
 
-            // instantiate the new london data object
+            // instantiate the new london date object
             var lndnDate = new Date(2014, 9, 13, 12, 50, 15);
 
-            // for proper conversion, add five hours to London's time
+            // get the hours for london
             var lndnHours = lndnDate.getHours();
             
             //  Set the default meridian
@@ -56,6 +56,7 @@
             	lndnHours -= 12;
             }
             
+            // grab the other time attributes
             var lndnMinutes = lndnDate.getMinutes();
             var lndnSeconds = lndnDate.getSeconds();
 
