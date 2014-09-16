@@ -1,13 +1,21 @@
 section {
 	position: relative;
-	top: 250px;
+	top: 100px;
 }
 
 #nyc {
 	background-color:  #FF5A00;
 	width:  25%;
-	height: 50%;
+	height: 25%;
 	margin: 0 auto;
+}
+
+#nyc p {
+	text-align: center;
+}
+
+#nyc h1 {
+	text-align: center;
 }
 
 #london {
@@ -17,6 +25,14 @@ section {
 	margin: 0 auto;
 }
 
+#london p {
+	text-align: center;
+}
+
+#london h1 {
+	text-align: center;
+}
+
 #tokyo {
 	background-color:  #14CC5E;
 	width:  25%;
@@ -24,9 +40,25 @@ section {
 	margin: 0 auto;
 }
 
+#tokyo p {
+	text-align: center;
+}
+
+#tokyo h1 {
+	text-align: center;
+}
+
 #sydney {
 	background-color:  #CC8714;
 	width:  25%;
 	height: 25%;
 	margin: 0 auto;
+}
+
+#sydney p {
+	text-align: center;
+}
+
+#sydney h1 {
+	text-align: center;
 }
